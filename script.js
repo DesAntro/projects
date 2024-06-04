@@ -10,6 +10,8 @@ const playerScissorsBtn = document.querySelector('.scissors--btn');
 const cpuRock = document.querySelector('.rock--cpu');
 const cpuScissors = document.querySelector('.scissors--cpu');
 const cpuPaper = document.querySelector('.paper--cpu');
+const showModal = document.querySelector('.modal');
+const closeModal = document.querySelector('.close');
 let playerSelectionbtn = '';
 const cpuSelect = [
   cpuScissors.textContent,
@@ -17,6 +19,36 @@ const cpuSelect = [
   cpuRock.textContent,
 ];
 console.log(cpuSelect);
+// modal
+const openModal = function () {
+  showModal.classList.remove('hidden');
+  disablePlayerBtns();
+};
+
+const exitModal = function () {
+  showModal.classList.add('hidden');
+  enablePlayerBtns();
+};
+
+closeModal.addEventListener('click', exitModal);
+// disable buttons when modal is on screen
+const disablePlayerBtns = function () {
+  playerRockBtn.disabled = true;
+  playerPaperBtn.disabled = true;
+  playerScissorsBtn.disabled = true;
+};
+
+//enable buttons when modal is closed
+const enablePlayerBtns = function () {
+  playerRockBtn.disabled = false;
+  playerPaperBtn.disabled = false;
+  playerScissorsBtn.disabled = false;
+};
+// win quote
+function gameOutcome(message) {
+  document.getElementById('win-quote').innerHTML = message;
+  openModal();
+}
 
 // game logic
 playerRockBtn.addEventListener('click', () => {
@@ -51,19 +83,22 @@ const gameLogic = function (playerSelectionbtn, cpuSelect) {
         playerSelectionbtn === playerRockBtn.textContent &&
         cpuSelect === cpuRock.textContent
       ) {
-        return alert('Draw Game !');
+        let winQuote = gameOutcome('Draw Game!');
+        return winQuote;
       } else if (
         playerSelectionbtn === playerRockBtn.textContent &&
         cpuSelect === cpuScissors.textContent
       ) {
         playerScore.textContent = Number(playerScore.textContent) + 1;
-        return alert('Player Wins!');
+        let winQuote = gameOutcome('Player Wins!');
+        return winQuote;
       } else if (
         playerSelectionbtn === playerRockBtn.textContent &&
         cpuSelect === cpuPaper.textContent
       ) {
         cpuScore.textContent = Number(cpuScore.textContent) + 1;
-        return alert('CPU WINS!');
+        let winQuote = gameOutcome('CPU Wins!');
+        return winQuote;
       }
       break;
 
@@ -72,19 +107,22 @@ const gameLogic = function (playerSelectionbtn, cpuSelect) {
         playerSelectionbtn === playerScissorsBtn.textContent &&
         cpuSelect === cpuScissors.textContent
       ) {
-        return alert('Draw Game !');
+        let winQuote = gameOutcome('Draw Game!');
+        return winQuote;
       } else if (
         playerSelectionbtn === playerScissorsBtn.textContent &&
         cpuSelect === cpuPaper.textContent
       ) {
         playerScore.textContent = Number(playerScore.textContent) + 1;
-        return alert('Player Wins!');
+        let winQuote = gameOutcome('Player Wins!');
+        return winQuote;
       } else if (
         playerSelectionbtn === playerScissorsBtn.textContent &&
         cpuSelect === cpuRock.textContent
       ) {
         cpuScore.textContent = Number(cpuScore.textContent) + 1;
-        return alert('CPU WINS!');
+        let winQuote = gameOutcome('CPU Wins!');
+        return winQuote;
       }
       break;
 
@@ -93,19 +131,22 @@ const gameLogic = function (playerSelectionbtn, cpuSelect) {
         playerSelectionbtn === playerPaperBtn.textContent &&
         cpuSelect === cpuPaper.textContent
       ) {
-        return alert('Draw Game !');
+        let winQuote = gameOutcome('Draw Game!');
+        return winQuote;
       } else if (
         playerSelectionbtn === playerPaperBtn.textContent &&
         cpuSelect === cpuRock.textContent
       ) {
         playerScore.textContent = Number(playerScore.textContent) + 1;
-        return alert('Player Wins!');
+        let winQuote = gameOutcome('Player Wins!');
+        return winQuote;
       } else if (
         playerSelectionbtn === playerPaperBtn.textContent &&
         cpuSelect === cpuScissors.textContent
       ) {
         cpuScore.textContent = Number(cpuScore.textContent) + 1;
-        return alert('CPU WINS!');
+        let winQuote = gameOutcome('CPU wins!');
+        return winQuote;
       }
       break;
   }
