@@ -13,6 +13,7 @@ const cpuPaper = document.querySelector('.paper--cpu');
 const showModal = document.querySelector('.modal');
 const closeModal = document.querySelector('.close');
 let playerSelectionbtn = '';
+let cpuValue = null;
 const cpuSelect = [
   cpuScissors.textContent,
   cpuPaper.textContent,
@@ -20,14 +21,18 @@ const cpuSelect = [
 ];
 console.log(cpuSelect);
 // modal
+removeHighlight();
+
 const openModal = function () {
   showModal.classList.remove('hidden');
   disablePlayerBtns();
+  cpuHighlighter(cpuValue);
 };
 
 const exitModal = function () {
   showModal.classList.add('hidden');
   enablePlayerBtns();
+  removeHighlight();
 };
 
 closeModal.addEventListener('click', exitModal);
@@ -44,6 +49,23 @@ const enablePlayerBtns = function () {
   playerPaperBtn.disabled = false;
   playerScissorsBtn.disabled = false;
 };
+
+function removeHighlight() {
+  cpuRock.classList.remove('highlight');
+  cpuPaper.classList.remove('highlight');
+  cpuScissors.classList.remove('highlight');
+}
+
+function cpuHighlighter(cpuChoice) {
+  removeHighlight();
+  if (cpuChoice === cpuRock.textContent) {
+    cpuRock.classList.add('highlight');
+  } else if (cpuChoice === cpuPaper.textContent) {
+    cpuPaper.classList.add('highlight');
+  } else if (cpuChoice === cpuScissors.textContent) {
+    cpuScissors.classList.add('highlight');
+  }
+}
 // win quote
 function gameOutcome(message) {
   document.getElementById('win-quote').innerHTML = message;
@@ -68,15 +90,19 @@ playerPaperBtn.addEventListener('click', () => {
   gameLogic(playerSelectionbtn, cpuSelection());
 });
 
-const cpuSelection = function () {
+function cpuSelection() {
   const randomIndex = Math.floor(Math.random() * cpuSelect.length);
   const cpuChoice = cpuSelect[randomIndex];
   console.log(cpuChoice);
+  cpuStored(cpuChoice);
   return cpuChoice;
-};
-cpuSelection();
+}
+function cpuStored(selection) {
+  console.log(selection);
+  cpuValue = selection;
+}
 
-const gameLogic = function (playerSelectionbtn, cpuSelect) {
+function gameLogic(playerSelectionbtn, cpuSelect) {
   switch (playerSelectionbtn) {
     case playerRockBtn.textContent:
       if (
@@ -150,4 +176,4 @@ const gameLogic = function (playerSelectionbtn, cpuSelect) {
       }
       break;
   }
-};
+}
