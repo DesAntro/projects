@@ -219,3 +219,22 @@ body {
 .highlight {
   background-color: var(--dark-bg);
 }
+
+.resetBtn {
+  position: relative;
+  bottom: 30px;
+  left: 46.25%;
+  width: 12rem;
+  height: 3rem;
+  background-color: var(--light-bg);
+  border-radius: 20px;
+  border: 3px solid black;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: x-large;
+  color: azure;
+  transform: translateX(-50%, -50%);
+}
+
+.resetBtn:hover {
+  background-color: var(--dark-bg);
+}

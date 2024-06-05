@@ -177,3 +177,16 @@ function gameLogic(playerSelectionbtn, cpuSelect) {
       break;
   }
 }
+
+// reset button
+const resetButton = document.createElement('button');
+resetButton.textContent = 'New Game';
+resetButton.className = 'resetBtn';
+document.body.appendChild(resetButton);
+
+function resetScore() {
+  playerScore.textContent = '00';
+  cpuScore.textContent = '00';
+}
+
+resetButton.addEventListener('click', resetScore);
