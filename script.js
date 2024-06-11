@@ -182,7 +182,9 @@ function gameLogic(playerSelectionbtn, cpuSelect) {
 const resetButton = document.createElement('button');
 resetButton.textContent = 'New Game';
 resetButton.className = 'resetBtn';
-document.body.appendChild(resetButton);
+
+const container = document.querySelector('.container');
+container.appendChild(resetButton);
 
 function resetScore() {
   playerScore.textContent = '00';
