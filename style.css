@@ -39,6 +39,7 @@ body {
   gap: 30px;
   justify-content: center;
   align-content: center;
+  margin-top: 5vh;
 }
 
 .player {
@@ -198,12 +199,21 @@ body {
 .scissors--btn:hover {
   background-color: var(--dark-bg);
 }
+
+.player,
+.cpu,
+.container {
+  transition: all 2s ease-in-out;
+}
 @media (max-width: 600px) {
   .container {
     grid-template-rows: auto auto auto auto auto auto auto;
     width: 80%;
+    height: 80%;
     max-width: 500px;
     margin: 0 auto;
+    margin-top: 0.5vh;
+    transform: scale(0.9);
   }
   .player {
     grid-column: 1 / span 4;
